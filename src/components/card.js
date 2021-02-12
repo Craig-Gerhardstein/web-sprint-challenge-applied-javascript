@@ -18,6 +18,18 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
+
+  // const artImg = axios.get('https://lambda-times-api.herokuapp.com/articles')
+  // let results = []
+
+  // artImg.forEach(function(image) {
+  //   Object.keys(item).forEach(function(key){
+  //     results.push(item[key])
+  //   })
+  // })
+    
+  
+
   const cardDiv = document.createElement('div');
   const headlineDiv = document.createElement('div');
   const authorDiv = document.createElement('div');
@@ -36,15 +48,20 @@ const Card = (article) => {
   authorDiv.classList.add('author');
   imgDiv.classList.add('img-container');
 
-  authorImg.src = article.authorPhoto;
+  // authorImg.setAttribute('src') = article[][authorPhoto]
 
   headlineDiv.textContent = article.headline;
-  authorImg.src = article.autherPhoto;
+  authorImg.src = article.authorPhoto;
   authorName.textContent = article.authorName;
+
+  cardDiv.addEventListener('click', x => {
+    console.log(headlineDiv.textContent)
+})
 
 
 return cardDiv
 }
+
 
 const cardAppender = (selector) => {
   // TASK 6
@@ -57,7 +74,7 @@ const cardAppender = (selector) => {
   //
   axios.get('https://lambda-times-api.herokuapp.com/articles')
   .then((response) =>{
-    for ( const cardCont in response.data.articles) {
+    for( const cardCont in response.data.articles) {
       response.data.articles[cardCont].map((article) => {
         document.querySelector(selector).appendChild(Card(article));
       });
